@@ -21,11 +21,20 @@ namespace Core.AppServices
             return product;
         }
 
-        public async Task<IReadOnlyList<Product>> GetProductsAsync()
+        public async Task<IReadOnlyList<Product>> GetProductsAsync(ProductSpecParams productParams)
         {
-            var spec = new ProductsWithBrandsAndTypesSpec();
+            var spec = new ProductsWithBrandsAndTypesSpec(productParams);
             var products = await _productRepo.GetAllWithSpecAsync(spec);
+
             return products;
+        }
+
+        public async Task<int> GetProductsCountAsync(ProductSpecParams productParams)
+        {
+            var spec = new ProductsWithFiltersForCountSpec(productParams);
+            var totalItems = await _productRepo.CountWithSpecAsync(spec);
+
+            return totalItems;
         }
     }
 }
