@@ -28,13 +28,13 @@ namespace API.Controllers
             [FromQuery] ProductSpecParams productParams)
         {
             var products = await _productService.GetProductsAsync(productParams);
-            var totalItems = await _productService.GetProductsCountAsync(productParams);
+            var totalProducts = await _productService.GetProductsCountAsync(productParams);
 
             var data = _mapper
                 .Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products);
 
             return Ok(new Pagination<ProductToReturnDto>
-                (productParams.PageIndex, productParams.PageSize, totalItems, data));
+                (productParams.PageIndex, productParams.PageSize, totalProducts, data));
         }
 
         [HttpGet("{id}")]
