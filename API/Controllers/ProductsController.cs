@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using API.Dtos;
 using API.Errors;
-using API.Helpers;
-using AutoMapper;
+using Core.Dtos;
 using Core.Entities;
+using Core.Helpers;
 using Core.Interfaces;
 using Core.Specifications;
 using Microsoft.AspNetCore.Http;
@@ -15,11 +14,9 @@ namespace API.Controllers
     public class ProductsController : ApiBaseController
     {
         private readonly IProductService _productService;
-        private readonly IMapper _mapper;
 
-        public ProductsController(IProductService productService, IMapper mapper)
+        public ProductsController(IProductService productService)
         {
-            _mapper = mapper;
             _productService = productService;
         }
 
@@ -28,13 +25,8 @@ namespace API.Controllers
             [FromQuery] ProductSpecParams productParams)
         {
             var products = await _productService.GetProductsAsync(productParams);
-            var totalProducts = await _productService.GetProductsCountAsync(productParams);
 
-            var data = _mapper
-                .Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products);
-
-            return Ok(new Pagination<ProductToReturnDto>
-                (productParams.PageIndex, productParams.PageSize, totalProducts, data));
+            return Ok(products);
         }
 
         [HttpGet("{id}")]
@@ -47,8 +39,25 @@ namespace API.Controllers
             if (product == null)
                 return NotFound(new ApiResponse(404));
 
-            return Ok(_mapper.Map<Product, ProductToReturnDto>(product));
+            return Ok(product);
         }
 
+        [HttpGet]
+        [Route("brands")]
+
+        public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands()
+        {
+            var productBrands = await _productService.GetProductBrandsAsync();
+            return Ok(productBrands);
+        }
+
+        [HttpGet]
+        [Route("types")]
+        public async Task<ActionResult<IReadOnlyList<ProductType>>> GetProductTypes()
+        {
+            var productTypes = await _productService.GetProductTypesAsync();
+            return Ok(productTypes);
+        }
     }
+
 }

@@ -1,6 +1,6 @@
 using System.Linq;
 using API.Errors;
-using Core.AppServices;
+using Core.Application;
 using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +14,9 @@ namespace API.Extensions
         {
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<ICartRepository, CartRepository>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<ICartService, CartService>();
 
             services.Configure<ApiBehaviorOptions>(options =>
             {

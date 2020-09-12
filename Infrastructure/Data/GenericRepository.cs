@@ -29,7 +29,7 @@ namespace Infrastructure.Data
 
         public async Task<IReadOnlyList<T>> GetAllWithSpecAsync(ISpecification<T> spec)
         {
-            return await ApplySpec(spec).ToListAsync();
+            return await ApplySpec(spec).AsNoTracking().ToListAsync();
         }
 
         public async Task<T> GetEntityWtihSpecAsync(ISpecification<T> spec)
