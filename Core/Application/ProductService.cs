@@ -43,7 +43,7 @@ namespace Core.Application
                .Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products);
 
             var countSpec = new ProductsWithFiltersForCountSpec(productParams);
-            var totalProducts = await _productRepo.CountWithSpecAsync(spec);
+            var totalProducts = await _productRepo.CountWithSpecAsync(countSpec);
 
             return new Pagination<ProductToReturnDto>
                 (productParams.PageIndex, productParams.PageSize, totalProducts, mappedProducts);

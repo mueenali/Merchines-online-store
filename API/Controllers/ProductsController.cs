@@ -58,6 +58,7 @@ namespace API.Controllers
             var productTypes = await _productService.GetProductTypesAsync();
             return Ok(productTypes);
         }
+        
     }
 
 }

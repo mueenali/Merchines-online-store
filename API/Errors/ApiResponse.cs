@@ -20,7 +20,7 @@ namespace API.Errors
             {
                 400 => "A bad request has occured",
                 401 => "Unauthorized request",
-                404 => "Resoruce was not found",
+                404 => "Resource was not found",
                 500 => "Internal server error has occured",
                 _ => null
             };
