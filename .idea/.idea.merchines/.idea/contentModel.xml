@@ -27,6 +27,9 @@
           <e p="ServicesExtensions.cs" t="Include" />
           <e p="SwaggerExtensions.cs" t="Include" />
         </e>
+        <e p="Helpers" t="Include">
+          <e p="GetEmailFromClaims.cs" t="Include" />
+        </e>
         <e p="identity.db" t="Include" />
         <e p="merchines.db" t="Include" />
         <e p="Middleware" t="Include">
@@ -79,6 +82,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Core.csproj" t="IncludeRecursive" />
         <e p="Dtos" t="Include">
+          <e p="AddressDto.cs" t="Include" />
           <e p="LoginDto.cs" t="Include" />
           <e p="ProductToReturnDto.cs" t="Include" />
           <e p="RegisterDto.cs" t="Include" />
@@ -127,6 +131,7 @@
           <e p="ProductsWithBrandsAndTypesSpec.cs" t="Include" />
           <e p="ProductsWithFiltersForCountSpec.cs" t="Include" />
         </e>
+        <e p="UserManagerExtensions.cs" t="Include" />
       </e>
       <e p="Infrastructure" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />

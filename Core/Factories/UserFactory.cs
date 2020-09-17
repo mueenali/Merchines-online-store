@@ -1,4 +1,5 @@
-﻿using Core.Entities.Identity;
+﻿using Core.Dtos;
+using Core.Entities.Identity;
 
 namespace Core.Factories
 {
@@ -16,6 +17,16 @@ namespace Core.Factories
                 Email = email,
                 DisplayName = displayName,
                 UserName = email
+            };
+        }
+
+        public UserDto CreateUserDto(AppUser user, string token)
+        {
+            return new UserDto
+            {
+                Email = user.Email,
+                DisplayName = user.DisplayName,
+                Token = token
             };
         }
     }
