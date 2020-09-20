@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Threading.Tasks;
 using AutoMapper;
 using Core.Dtos;
@@ -27,7 +28,7 @@ namespace Core.Application
             _mapper = mapper;
         }
         
-        public async Task<UserDto> Login(LoginDto loginDto)
+        public async Task<UserDto> LoginAsync(LoginDto loginDto)
         {
             var user = await _userManager.FindByEmailAsync(loginDto.Email);
 
@@ -40,7 +41,7 @@ namespace Core.Application
                 : _userFactory.CreateUserDto(user, _tokenService.GenerateToken(user));
         }
 
-        public async Task<UserDto> Register(RegisterDto registerDto)
+        public async Task<UserDto> RegisterAsync(RegisterDto registerDto)
         {
             var user = _userFactory.Create(registerDto.Email, registerDto.DisplayName);
 
@@ -50,26 +51,26 @@ namespace Core.Application
                 : _userFactory.CreateUserDto(user, _tokenService.GenerateToken(user));
         }
 
-        public async Task<UserDto> GetCurrentUser(string email)
+        public async Task<UserDto> GetCurrentUserAsync(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
             return _userFactory.CreateUserDto(user, _tokenService.GenerateToken(user));
         }
 
-        public async Task<bool> CheckUserExists(string email)
+        public async Task<bool> CheckUserExistsAsync(string email)
         {
             var result = await _userManager.FindByEmailAsync(email) != null;
             return result;
         }
 
-        public async Task<AddressDto> GetUserAddress(string email)
+        public async Task<AddressDto> GetUserAddressAsync(string email)
         {
             var user = await _userManager.FindByEmailWithAddressAsync(email);
             
             return _mapper.Map<Address, AddressDto>(user.Address);
         }
 
-        public async Task<AddressDto> UpdateUserAddress(AddressDto addressDto, string email)
+        public async Task<AddressDto> UpdateUserAddressAsync(AddressDto addressDto, string email)
         {
             var user = await _userManager.FindByEmailWithAddressAsync(email);
             user.Address = _mapper.Map<AddressDto, Address>(addressDto);

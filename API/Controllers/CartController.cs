@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Core.Dtos;
 using Core.Entities;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Http;
@@ -12,15 +13,15 @@ namespace API.Controllers {
         }
 
         [HttpGet]
-        public async Task<ActionResult<Cart>> GetCart(string id)
+        public async Task<ActionResult<CartDto>> GetCart(string id)
         {
            return Ok( await _cartService.GetCartAsync(id));
         }
 
         [HttpPost]
-        public async Task<ActionResult<Cart>> UpdateCart(Cart cart)
+        public async Task<ActionResult<CartDto>> UpdateCart(CartDto cartDto)
         {
-           return Ok( await _cartService.UpdateCartAsync(cart));   
+           return Ok( await _cartService.UpdateCartAsync(cartDto));   
         }
 
         [HttpDelete]

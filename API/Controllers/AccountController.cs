@@ -28,14 +28,14 @@ namespace API.Controllers
         {
             var email = GetEmailFromClaims.GetEmail(HttpContext.User);
             
-            var user = await _accountService.GetCurrentUser(email);
+            var user = await _accountService.GetCurrentUserAsync(email);
             return Ok(user);
         }
 
         [HttpGet("emailexists")]
         public async Task<ActionResult<bool>> CheckEmailExists([FromQuery] string email)
         {
-            return await _accountService.CheckUserExists(email);
+            return await _accountService.CheckUserExistsAsync(email);
         }
         
         [HttpGet("address")]
@@ -44,7 +44,7 @@ namespace API.Controllers
         {
             var email = GetEmailFromClaims.GetEmail(HttpContext.User);
             
-            var userAddress =  await _accountService.GetUserAddress(email);
+            var userAddress =  await _accountService.GetUserAddressAsync(email);
             return Ok(userAddress);
         }
 
@@ -53,7 +53,7 @@ namespace API.Controllers
         public async Task<ActionResult<AddressDto>> UpdateUserAddress(AddressDto addressDto)
         {
             var email = GetEmailFromClaims.GetEmail(HttpContext.User);
-            var address = await _accountService.UpdateUserAddress(addressDto, email);
+            var address = await _accountService.UpdateUserAddressAsync(addressDto, email);
 
             if (address == null)
             {
@@ -66,7 +66,7 @@ namespace API.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
-            var user = await _accountService.Login(loginDto);
+            var user = await _accountService.LoginAsync(loginDto);
 
             if (user == null)
                 return Unauthorized(new ApiResponse(401));
@@ -78,7 +78,12 @@ namespace API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
-            var user = await _accountService.Register(registerDto);
+            if (await _accountService.CheckUserExistsAsync(registerDto.Email))
+            {
+                return BadRequest(new ApiValidationError{ValidationErrors = new[]{"Email is already in use"}});
+            }
+            
+            var user = await _accountService.RegisterAsync(registerDto);
 
             if (user == null)
                 return BadRequest(new ApiResponse(400));

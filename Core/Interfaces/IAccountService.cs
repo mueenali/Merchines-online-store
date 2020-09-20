@@ -6,11 +6,11 @@ namespace Core.Interfaces
 {
     public interface IAccountService
     {
-        Task<UserDto> Login(LoginDto loginDto);
-        Task<UserDto> Register(RegisterDto registerDto);
-        Task<UserDto> GetCurrentUser(string email);
-        Task<bool> CheckUserExists(string email);
-        Task<AddressDto> GetUserAddress(string email);
-        Task<AddressDto> UpdateUserAddress(AddressDto addressDto, string email);
+        Task<UserDto> LoginAsync(LoginDto loginDto);
+        Task<UserDto> RegisterAsync(RegisterDto registerDto);
+        Task<UserDto> GetCurrentUserAsync(string email);
+        Task<bool> CheckUserExistsAsync(string email);
+        Task<AddressDto> GetUserAddressAsync(string email);
+        Task<AddressDto> UpdateUserAddressAsync(AddressDto addressDto, string email);
     }
 }

@@ -83,6 +83,8 @@
         <e p="Core.csproj" t="IncludeRecursive" />
         <e p="Dtos" t="Include">
           <e p="AddressDto.cs" t="Include" />
+          <e p="CartDto.cs" t="Include" />
+          <e p="CartItemDto.cs" t="Include" />
           <e p="LoginDto.cs" t="Include" />
           <e p="ProductToReturnDto.cs" t="Include" />
           <e p="RegisterDto.cs" t="Include" />

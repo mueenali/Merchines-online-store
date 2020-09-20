@@ -1,11 +1,16 @@
 using System.Threading.Tasks;
+using AutoMapper;
+using Core.Dtos;
 using Core.Entities;
 using Core.Interfaces;
 
 namespace Core.Application {
     public class CartService : ICartService {
+        private readonly IMapper _mapper;
         private readonly ICartRepository _cartRepo;
-        public CartService (ICartRepository cartRepo) {
+        public CartService (ICartRepository cartRepo , IMapper mapper)
+        {
+            _mapper = mapper;
             _cartRepo = cartRepo;
         }
 
@@ -15,16 +20,21 @@ namespace Core.Application {
             return deleted;
         }
 
-        public async Task<Cart> GetCartAsync (string cartId) {
+        public async Task<CartDto> GetCartAsync (string cartId) {
             var cart = await _cartRepo.GetCartAsync(cartId);
 
-            return cart ?? new Cart(cartId);
+            var mappedCart = _mapper.Map<Cart, CartDto>(cart);
+
+            return mappedCart ?? _mapper.Map<Cart, CartDto>(new Cart(cartId));
         }
 
-        public async Task<Cart> UpdateCartAsync (Cart cart) {
+        public async Task<CartDto> UpdateCartAsync (CartDto cartDto)
+        {
+            var cart = _mapper.Map<CartDto, Cart>(cartDto);
             var updatedCart = await _cartRepo.UpdateCartAsync(cart);
-
-            return updatedCart;
+            var mappedCart = _mapper.Map<Cart, CartDto>(updatedCart);
+            
+            return mappedCart ;
         }
     }
 }
