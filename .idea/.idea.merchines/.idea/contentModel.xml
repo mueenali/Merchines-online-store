@@ -14,6 +14,7 @@
           <e p="BuggyController.cs" t="Include" />
           <e p="CartController.cs" t="Include" />
           <e p="ErrorController.cs" t="Include" />
+          <e p="OrderController.cs" t="Include" />
           <e p="ProductsController.cs" t="Include" />
           <e p="WeatherForecastController.cs" t="Include" />
         </e>
@@ -77,6 +78,7 @@
         <e p="Application" t="Include">
           <e p="AccountService.cs" t="Include" />
           <e p="CartService.cs" t="Include" />
+          <e p="OrderService.cs" t="Include" />
           <e p="ProductService.cs" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
@@ -85,6 +87,7 @@
           <e p="AddressDto.cs" t="Include" />
           <e p="CartDto.cs" t="Include" />
           <e p="CartItemDto.cs" t="Include" />
+          <e p="CreateOrderDto.cs" t="Include" />
           <e p="LoginDto.cs" t="Include" />
           <e p="ProductToReturnDto.cs" t="Include" />
           <e p="RegisterDto.cs" t="Include" />
@@ -97,6 +100,14 @@
           <e p="Identity" t="Include">
             <e p="Address.cs" t="Include" />
             <e p="AppUser.cs" t="Include" />
+          </e>
+          <e p="OrderAggregate" t="Include">
+            <e p="Address.cs" t="Include" />
+            <e p="DeliveryMethod.cs" t="Include" />
+            <e p="Order.cs" t="Include" />
+            <e p="OrderItem.cs" t="Include" />
+            <e p="OrderStatus.cs" t="Include" />
+            <e p="ProductItemOrdered.cs" t="Include" />
           </e>
           <e p="Product.cs" t="Include" />
           <e p="ProductBrand.cs" t="Include" />
@@ -115,9 +126,10 @@
           <e p="ICartRepository.cs" t="Include" />
           <e p="ICartService.cs" t="Include" />
           <e p="IGenericRepository.cs" t="Include" />
-          <e p="IProductRepository.cs" t="Include" />
+          <e p="IOrderService.cs" t="Include" />
           <e p="IProductService.cs" t="Include" />
           <e p="ITokenService.cs" t="Include" />
+          <e p="IUnitOfWork.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -140,23 +152,29 @@
         <e p="Data" t="Include">
           <e p="CartRepository.cs" t="Include" />
           <e p="Config" t="Include">
+            <e p="DeliveryMethodConfiguration.cs" t="Include" />
+            <e p="OrderConfiguration.cs" t="Include" />
+            <e p="OrderItemConfiguration.cs" t="Include" />
             <e p="ProductConfiguration.cs" t="Include" />
           </e>
           <e p="GenericRepository.cs" t="Include" />
           <e p="Migrations" t="Include">
             <e p="20200205060015_InitialCreate.cs" t="Include" />
             <e p="20200205060015_InitialCreate.Designer.cs" t="Include" />
+            <e p="20200921040323_OrderMigrationAdded.cs" t="Include" />
+            <e p="20200921040323_OrderMigrationAdded.Designer.cs" t="Include" />
             <e p="StoreContextModelSnapshot.cs" t="Include" />
           </e>
-          <e p="ProductRepository.cs" t="Include" />
           <e p="SeedData" t="Include">
             <e p="brands.json" t="Include" />
+            <e p="dm.json" t="Include" />
             <e p="products.json" t="Include" />
             <e p="types.json" t="Include" />
           </e>
           <e p="SpecificationEvaluator.cs" t="Include" />
           <e p="StoreContext.cs" t="Include" />
           <e p="StoreContextSeed.cs" t="Include" />
+          <e p="UnitOfWork.cs" t="Include" />
         </e>
         <e p="Identity" t="Include">
           <e p="AppIdentityDbContext.cs" t="Include" />

@@ -11,25 +11,19 @@ namespace Core.Application
 {
     public class ProductService : IProductService
     {
-        private readonly IGenericRepository<Product> _productRepo;
-        private readonly IGenericRepository<ProductBrand> _brandRepo;
-        private readonly IGenericRepository<ProductType> _typeRepo;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public ProductService(IGenericRepository<Product> productRepo,
-            IGenericRepository<ProductBrand> brandRepo, IGenericRepository<ProductType> typeRepo,
-            IMapper mapper)
+        public ProductService(IUnitOfWork unitOfWork,IMapper mapper)
         {
-            _typeRepo = typeRepo;
-            _brandRepo = brandRepo;
-            _productRepo = productRepo;
+            _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
         public async Task<ProductToReturnDto> GetProductAsync(int id)
         {
             var spec = new ProductsWithBrandsAndTypesSpec(id);
-            var product = await _productRepo.GetEntityWtihSpecAsync(spec);
+            var product = await _unitOfWork.Repository<Product>().GetEntityWtihSpecAsync(spec);
 
             return _mapper.Map<Product, ProductToReturnDto>(product);
         }
@@ -37,13 +31,14 @@ namespace Core.Application
         public async Task<Pagination<ProductToReturnDto>> GetProductsAsync(ProductSpecParams productParams)
         {
             var spec = new ProductsWithBrandsAndTypesSpec(productParams);
-            var products = await _productRepo.GetAllWithSpecAsync(spec);
+            var products = await _unitOfWork.Repository<Product>()
+                .GetAllWithSpecAsync(spec);
 
             var mappedProducts = _mapper
                .Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products);
 
             var countSpec = new ProductsWithFiltersForCountSpec(productParams);
-            var totalProducts = await _productRepo.CountWithSpecAsync(countSpec);
+            var totalProducts = await _unitOfWork.Repository<Product>().CountWithSpecAsync(countSpec);
 
             return new Pagination<ProductToReturnDto>
                 (productParams.PageIndex, productParams.PageSize, totalProducts, mappedProducts);
@@ -51,13 +46,13 @@ namespace Core.Application
 
         public async Task<IReadOnlyList<ProductBrand>> GetProductBrandsAsync()
         {
-            var productBrands = await _brandRepo.GetAllAsync();
+            var productBrands = await _unitOfWork.Repository<ProductBrand>().GetAllAsync();
             return productBrands;
         }
 
         public async Task<IReadOnlyList<ProductType>> GetProductTypesAsync()
         {
-            var productTypes = await _typeRepo.GetAllAsync();
+            var productTypes = await _unitOfWork.Repository<ProductType>().GetAllAsync();
             return productTypes;
         }
 

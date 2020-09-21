@@ -3,7 +3,7 @@ using System.Security.Claims;
 
 namespace API.Helpers
 {
-    public class GetEmailFromClaims
+    public static class GetEmailFromClaims
     {
         public static string GetEmail(ClaimsPrincipal userClaims)
         {
