@@ -56,6 +56,9 @@ namespace Core.Application
             return productTypes;
         }
 
-
+        public Task<ProductToReturnDto> AddProduct(CreateProductDto productDto)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

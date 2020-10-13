@@ -6,6 +6,7 @@ using Core.Dtos;
 using Core.Entities;
 using Core.Entities.OrderAggregate;
 using Core.Interfaces;
+using Core.Specifications;
 
 
 namespace Core.Application
@@ -23,7 +24,7 @@ namespace Core.Application
             _mapper = mapper;
         }
         
-        public async Task<Order> CreateOrderAsync(string buyerEmail, CreateOrderDto orderDto)
+        public async Task<OrderDto> CreateOrderAsync(string buyerEmail, CreateOrderDto orderDto)
         {
             var cart = await _cartRepo.GetCartAsync(orderDto.CartId);
             var order = new Order();
@@ -48,22 +49,27 @@ namespace Core.Application
 
             await _cartRepo.DeleteCartAsync(orderDto.CartId);
 
-            return order;
+            return _mapper.Map<Order, OrderDto>(order);
         }
 
-        public Task<IReadOnlyList<Order>> GetUserOrdersAsync(string buyerEmail)
+        public async Task<IReadOnlyList<OrderDto>> GetUserOrdersAsync(string buyerEmail)
         {
-            throw new System.NotImplementedException();
+            var spec = new OrdersWithItemsSpec(buyerEmail);
+            var orders = await _unitOfWork.Repository<Order>().GetAllWithSpecAsync(spec);
+            return _mapper.Map<IReadOnlyList<Order>, IReadOnlyList<OrderDto>>(orders);
         }
 
-        public Task<Order> GetOrderById(int id, string buyerEmail)
+        public async Task<OrderDto> GetOrderById(int id, string buyerEmail)
         {
-            throw new System.NotImplementedException();
+            var spec = new OrdersWithItemsSpec(id, buyerEmail);
+            var order = await _unitOfWork.Repository<Order>().GetEntityWtihSpecAsync(spec);
+            return _mapper.Map<Order, OrderDto>(order);
         }
 
-        public Task<IReadOnlyList<DeliveryMethod>> GetDeliveryMethodsAsync()
+        public async Task<IReadOnlyList<DeliveryMethod>> GetDeliveryMethodsAsync()
         {
-            throw new System.NotImplementedException();
+            var deliveryMethods = await _unitOfWork.Repository<DeliveryMethod>().GetAllAsync();
+            return deliveryMethods;
         }
     }
 }

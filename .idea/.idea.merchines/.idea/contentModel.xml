@@ -11,7 +11,6 @@
         <e p="Controllers" t="Include">
           <e p="AccountController.cs" t="Include" />
           <e p="ApiBaseController.cs" t="Include" />
-          <e p="BuggyController.cs" t="Include" />
           <e p="CartController.cs" t="Include" />
           <e p="ErrorController.cs" t="Include" />
           <e p="OrderController.cs" t="Include" />
@@ -88,7 +87,10 @@
           <e p="CartDto.cs" t="Include" />
           <e p="CartItemDto.cs" t="Include" />
           <e p="CreateOrderDto.cs" t="Include" />
+          <e p="CreateProductDto.cs" t="Include" />
           <e p="LoginDto.cs" t="Include" />
+          <e p="OrderDto.cs" t="Include" />
+          <e p="OrderItemDto.cs" t="Include" />
           <e p="ProductToReturnDto.cs" t="Include" />
           <e p="RegisterDto.cs" t="Include" />
           <e p="UserDto.cs" t="Include" />
@@ -127,6 +129,7 @@
           <e p="ICartService.cs" t="Include" />
           <e p="IGenericRepository.cs" t="Include" />
           <e p="IOrderService.cs" t="Include" />
+          <e p="IPhotoService.cs" t="Include" />
           <e p="IProductService.cs" t="Include" />
           <e p="ITokenService.cs" t="Include" />
           <e p="IUnitOfWork.cs" t="Include" />
@@ -141,6 +144,7 @@
         <e p="Specifications" t="Include">
           <e p="BaseSpecification.cs" t="Include" />
           <e p="ISpecification.cs" t="Include" />
+          <e p="OrdersWithItemsSpec.cs" t="Include" />
           <e p="ProductSpecParams.cs" t="Include" />
           <e p="ProductsWithBrandsAndTypesSpec.cs" t="Include" />
           <e p="ProductsWithFiltersForCountSpec.cs" t="Include" />

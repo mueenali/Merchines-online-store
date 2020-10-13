@@ -13,5 +13,6 @@ namespace Core.Interfaces
         Task<Pagination<ProductToReturnDto>> GetProductsAsync(ProductSpecParams productParams);
         Task<IReadOnlyList<ProductBrand>> GetProductBrandsAsync();
         Task<IReadOnlyList<ProductType>> GetProductTypesAsync();
+        Task<ProductToReturnDto> AddProduct(CreateProductDto productDto);
     }
 }

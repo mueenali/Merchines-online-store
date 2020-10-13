@@ -6,6 +6,7 @@ using Core.Entities;
 using Core.Helpers;
 using Core.Interfaces;
 using Core.Specifications;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,21 +43,31 @@ namespace API.Controllers
             return Ok(product);
         }
 
-        [HttpGet]
-        [Route("brands")]
-
+        [HttpGet("brands")]
         public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands()
         {
             var productBrands = await _productService.GetProductBrandsAsync();
             return Ok(productBrands);
         }
 
-        [HttpGet]
-        [Route("types")]
+        [HttpGet("types")]
         public async Task<ActionResult<IReadOnlyList<ProductType>>> GetProductTypes()
         {
             var productTypes = await _productService.GetProductTypesAsync();
             return Ok(productTypes);
+        }
+        
+        [HttpPost]
+        [Authorize]
+        public async Task<ActionResult<ProductToReturnDto>> AddProduct(CreateProductDto productDto)
+        {
+            var product = await _productService.AddProduct(productDto);
+            if (product == null)
+            {
+                return BadRequest(new ApiResponse(400, "Problem in creating the product"));
+            }
+            
+            return Ok(product);
         }
         
     }
