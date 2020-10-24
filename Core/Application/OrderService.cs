@@ -27,6 +27,12 @@ namespace Core.Application
         public async Task<OrderDto> CreateOrderAsync(string buyerEmail, CreateOrderDto orderDto)
         {
             var cart = await _cartRepo.GetCartAsync(orderDto.CartId);
+            var spec = new OrderbyPaymentIntentIdSpec(cart.PaymentIntent);
+            var existingOrder = await _unitOfWork.Repository<Order>().GetEntityWtihSpecAsync(spec);
+
+            if (existingOrder != null) _unitOfWork.Repository<Order>().Delete(existingOrder);
+            
+            
             var order = new Order();
             
             foreach (var item in cart.CartITems)
@@ -41,15 +47,12 @@ namespace Core.Application
             order.BuyerEmail = buyerEmail;
             order.DeliveryMethod = deliveryMethod;
             order.ShippingAddress = _mapper.Map<AddressDto, Address>(orderDto.ShippingAddress);
+            order.PaymentIntentId = cart.PaymentIntent;
             _unitOfWork.Repository<Order>().Add(order);
 
             var result = await _unitOfWork.Complete();
 
-            if (result <= 0) return null;
-
-            await _cartRepo.DeleteCartAsync(orderDto.CartId);
-
-            return _mapper.Map<Order, OrderDto>(order);
+            return result <= 0 ? null : _mapper.Map<Order, OrderDto>(order);
         }
 
         public async Task<IReadOnlyList<OrderDto>> GetUserOrdersAsync(string buyerEmail)

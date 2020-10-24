@@ -16,5 +16,6 @@ namespace Core.Dtos
         public decimal TotalPrice { get; set; }
         public decimal Total { get; set; }
         public string OrderStatus { get; set; } 
+        public string PaymentIntentId { get; set; }
     }
 }

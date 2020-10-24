@@ -21,9 +21,10 @@ namespace API.Extensions
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICartService, CartService>();
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IPaymentService, PaymentService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<ITokenService, TokenService>();
-            
+            services.AddScoped<IStripeService, StripeService>();
             services.AddTransient<UserFactory, UserFactory>();
             services.AddAWSService<IAmazonS3>();
 

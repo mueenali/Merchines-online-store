@@ -25,18 +25,13 @@
     <list default="true" id="24b5f9da-8ecb-4ad3-8b8e-a678a0de36dd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.merchines/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.merchines/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.merchines/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.merchines/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/API/API.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Controllers/BuggyController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Controllers/OrderController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Controllers/OrderController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Controllers/ProductsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Controllers/ProductsController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/Extensions/ServicesExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/API/Extensions/ServicesExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/API/appsettings.Development.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Application/OrderService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Application/OrderService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Application/ProductService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Application/ProductService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Helpers/MappingProfiles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Helpers/MappingProfiles.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Interfaces/IOrderService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Interfaces/IOrderService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Interfaces/IProductService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Interfaces/IProductService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure/Data/StoreContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Data/StoreContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure/Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Infrastructure.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Core.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Dtos/CartDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Dtos/CartDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Dtos/OrderDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Dtos/OrderDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Entities/Cart.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Entities/Cart.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,21 +49,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Core/Factories/UserFactory.cs" />
-        <option value="$PROJECT_DIR$/API/GetEmailFromClaims.cs" />
-        <option value="$PROJECT_DIR$/Core/Extensions/UserManagerExtensions.cs" />
-        <option value="$PROJECT_DIR$/API/Extensions/UserManagerExtensions.cs" />
-        <option value="$PROJECT_DIR$/Infrastructure/Identity/UserManagerExtensions.cs" />
-        <option value="$PROJECT_DIR$/Core/Entities/Identity/Address.cs" />
-        <option value="$PROJECT_DIR$/Core/Entities/Identity/AppUser.cs" />
-        <option value="$PROJECT_DIR$/Core/UserManagerExtensions.cs" />
-        <option value="$PROJECT_DIR$/Core/Dtos/AddressDto.cs" />
         <option value="$PROJECT_DIR$/Core/Interfaces/IAccountService.cs" />
         <option value="$PROJECT_DIR$/Core/Application/AccountService.cs" />
         <option value="$PROJECT_DIR$/Core/Dtos/RegisterDto.cs" />
         <option value="$PROJECT_DIR$/Core/Dtos/CartDtp.cs" />
         <option value="$PROJECT_DIR$/Core/Dtos/CartItemDto.cs" />
-        <option value="$PROJECT_DIR$/Core/Dtos/CartDto.cs" />
         <option value="$PROJECT_DIR$/Core/Interfaces/ICartService.cs" />
         <option value="$PROJECT_DIR$/Core/Application/CartService.cs" />
         <option value="$PROJECT_DIR$/API/Controllers/CartController.cs" />
@@ -95,16 +80,26 @@
         <option value="$PROJECT_DIR$/API/Controllers/OrderController.cs" />
         <option value="$PROJECT_DIR$/Infrastructure/Data/StoreContext.cs" />
         <option value="$PROJECT_DIR$/Core/Dtos/OrderItemDto.cs" />
-        <option value="$PROJECT_DIR$/Core/Dtos/OrderDto.cs" />
         <option value="$PROJECT_DIR$/Core/Interfaces/IOrderService.cs" />
-        <option value="$PROJECT_DIR$/Core/Application/OrderService.cs" />
         <option value="$PROJECT_DIR$/Core/Helpers/MappingProfiles.cs" />
         <option value="$PROJECT_DIR$/Core/Dtos/CreateProductDto.cs" />
         <option value="$PROJECT_DIR$/Core/Interfaces/IProductService.cs" />
         <option value="$PROJECT_DIR$/Core/Application/ProductService.cs" />
         <option value="$PROJECT_DIR$/API/Controllers/ProductsController.cs" />
-        <option value="$PROJECT_DIR$/API/Extensions/ServicesExtensions.cs" />
         <option value="$PROJECT_DIR$/Core/Interfaces/IPhotoService.cs" />
+        <option value="$PROJECT_DIR$/API/appsettings.Development.json" />
+        <option value="$PROJECT_DIR$/API/Extensions/ServicesExtensions.cs" />
+        <option value="$PROJECT_DIR$/Core/Entities/Cart.cs" />
+        <option value="$PROJECT_DIR$/Core/Dtos/CartDto.cs" />
+        <option value="$PROJECT_DIR$/Core/Specifications/OrderbyPaymentIntentIdSpec.cs" />
+        <option value="$PROJECT_DIR$/Core/Application/OrderService.cs" />
+        <option value="$PROJECT_DIR$/API/Errors/ApiResponse.cs" />
+        <option value="$PROJECT_DIR$/Core/Interfaces/IStripeService.cs" />
+        <option value="$PROJECT_DIR$/Infrastructure/Services/StripeService.cs" />
+        <option value="$PROJECT_DIR$/Core/Dtos/OrderDto.cs" />
+        <option value="$PROJECT_DIR$/Core/Application/PaymentService.cs" />
+        <option value="$PROJECT_DIR$/Core/Interfaces/IPaymentService.cs" />
+        <option value="$PROJECT_DIR$/API/Controllers/PaymentController.cs" />
       </list>
     </option>
   </component>
@@ -119,7 +114,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C#" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.smartKeys_rider" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Launch Settings Profile.API">
@@ -173,6 +168,10 @@
       <workItem from="1601379630167" duration="3947000" />
       <workItem from="1601424554134" duration="731000" />
       <workItem from="1601791217981" duration="632000" />
+      <workItem from="1602587125183" duration="378000" />
+      <workItem from="1603399749780" duration="9512000" />
+      <workItem from="1603458484068" duration="2294000" />
+      <workItem from="1603542269016" duration="2144000" />
     </task>
     <servers />
   </component>
@@ -281,14 +280,14 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1202" height="159" key="GridCell.Tab.4.right/0.0.1280.680@0.0.1280.680" timestamp="1600670492804" />
-    <state x="351" y="19" key="RiderGenerateDialog" timestamp="1601161460167">
+    <state x="351" y="19" key="RiderGenerateDialog" timestamp="1603459110869">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="351" y="19" key="RiderGenerateDialog/0.0.1280.680@0.0.1280.680" timestamp="1601161460167" />
-    <state x="142" y="0" key="SettingsEditor" timestamp="1600196783195">
+    <state x="351" y="19" key="RiderGenerateDialog/0.0.1280.680@0.0.1280.680" timestamp="1603459110869" />
+    <state x="142" y="0" key="SettingsEditor" timestamp="1603405619030">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1600196783195" />
+    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1603405619030" />
     <state x="110" y="120" width="1060" height="440" key="VCS.FileHistoryDialog" timestamp="1600297863405">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
