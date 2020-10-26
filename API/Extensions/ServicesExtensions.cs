@@ -1,5 +1,4 @@
 using System.Linq;
-using Amazon.S3;
 using API.Errors;
 using Core.Application;
 using Core.Factories;
@@ -15,9 +14,9 @@ namespace API.Extensions
     {
         public static IServiceCollection AddAppServices(this IServiceCollection services)
         {
+            services.AddSingleton<ICacheResponseService, CacheResponseService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ICartRepository, CartRepository>();
-            
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICartService, CartService>();
             services.AddScoped<IAccountService, AccountService>();
@@ -26,8 +25,7 @@ namespace API.Extensions
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IStripeService, StripeService>();
             services.AddTransient<UserFactory, UserFactory>();
-            services.AddAWSService<IAmazonS3>();
-
+            
             services.Configure<ApiBehaviorOptions>(options =>
             {
                 options.InvalidModelStateResponseFactory = actionContext =>

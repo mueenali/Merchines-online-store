@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Errors;
+using API.Helpers;
 using Core.Dtos;
 using Core.Entities;
 using Core.Helpers;
@@ -22,6 +23,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
+        [Cached(300)]
         public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetProducts(
             [FromQuery] ProductSpecParams productParams)
         {
@@ -33,6 +35,7 @@ namespace API.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+        [Cached(300)]
         public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id)
         {
             var product = await _productService.GetProductAsync(id);
@@ -44,6 +47,7 @@ namespace API.Controllers
         }
 
         [HttpGet("brands")]
+        [Cached(300)]
         public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands()
         {
             var productBrands = await _productService.GetProductBrandsAsync();
@@ -51,6 +55,7 @@ namespace API.Controllers
         }
 
         [HttpGet("types")]
+        [Cached(300)]
         public async Task<ActionResult<IReadOnlyList<ProductType>>> GetProductTypes()
         {
             var productTypes = await _productService.GetProductTypesAsync();

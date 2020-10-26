@@ -29,6 +29,7 @@
           <e p="SwaggerExtensions.cs" t="Include" />
         </e>
         <e p="Helpers" t="Include">
+          <e p="CachedAttribute.cs" t="Include" />
           <e p="GetEmailFromClaims.cs" t="Include" />
         </e>
         <e p="identity.db" t="Include" />
@@ -127,6 +128,7 @@
         </e>
         <e p="Interfaces" t="Include">
           <e p="IAccountService.cs" t="Include" />
+          <e p="ICacheResponseService.cs" t="Include" />
           <e p="ICartRepository.cs" t="Include" />
           <e p="ICartService.cs" t="Include" />
           <e p="IGenericRepository.cs" t="Include" />
@@ -203,6 +205,7 @@
           </e>
         </e>
         <e p="Services" t="Include">
+          <e p="CacheResponseService.cs" t="Include" />
           <e p="StripeService.cs" t="Include" />
           <e p="TokenService.cs" t="Include" />
         </e>

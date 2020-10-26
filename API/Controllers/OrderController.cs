@@ -7,7 +7,6 @@ using Core.Entities.OrderAggregate;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
 
 namespace API.Controllers
 {
@@ -16,14 +15,13 @@ namespace API.Controllers
     {
         private readonly IOrderService _orderService;
         
-
         public OrderController(IOrderService orderService)
         {
             _orderService = orderService;
         }
         
         [HttpPost]
-        public async Task<ActionResult<Order>> CreateOrder(CreateOrderDto orderDto)
+        public async Task<ActionResult<OrderDto>> CreateOrder(CreateOrderDto orderDto)
         {
             var email = GetEmailFromClaims.GetEmail(HttpContext.User);
             var order = await _orderService.CreateOrderAsync(email, orderDto);
@@ -37,7 +35,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<Order>>> GetUserOrders()
+        public async Task<ActionResult<IReadOnlyList<OrderDto>>> GetUserOrders()
         {
             var email = GetEmailFromClaims.GetEmail(HttpContext.User);
             var orders = await _orderService.GetUserOrdersAsync(email);
@@ -52,10 +50,11 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Order>> GetUserOrderById(int orderId)
+        [Cached(300)]
+        public async Task<ActionResult<OrderDto>> GetUserOrderById(int id)
         {
             var email = GetEmailFromClaims.GetEmail(HttpContext.User);
-            var order = await _orderService.GetOrderById(orderId, email);
+            var order = await _orderService.GetOrderById(id, email);
             
             if (order == null)
                 return NotFound(new ApiResponse(404));
@@ -64,6 +63,7 @@ namespace API.Controllers
         }
 
         [HttpGet("deliveryMethods")]
+        [Cached(300)]
         public async Task<ActionResult<IReadOnlyList<DeliveryMethod>>> GetDeliveryMethods()
         {
             var deliveryMethods = await _orderService.GetDeliveryMethodsAsync();

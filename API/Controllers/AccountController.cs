@@ -33,6 +33,7 @@ namespace API.Controllers
         }
 
         [HttpGet("emailexists")]
+        [Cached(600)]
         public async Task<ActionResult<bool>> CheckEmailExists([FromQuery] string email)
         {
             return await _accountService.CheckUserExistsAsync(email);
